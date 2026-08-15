@@ -22,8 +22,35 @@ bash
 pip install git+https://github.com/ZWC-SMU/KGFT.git
 
 ## 🚀 Basic Usage in ResNet
+## 🚀 Quick Start
+
+### Basic Usage
+
+```python
 import torch
-from kgft import KGFT
+from kgft import KernelGuidedFeatureTransform
+
+# Get the weight of previous convolutional layer
+prev_conv = model.layer1[0].conv1  # Example: get a conv layer
+prev_weight = prev_conv.weight
+
+# Initialize KGFT module
+kgft = KernelGuidedFeatureTransform(
+    dim=64,                      # Number of channels
+    prev_conv_weight=prev_weight,# Weight of previous conv layer
+    epsilon=1e-5,                # For numerical stability
+    init_strength=0.5            # Initial strength (0~1)
+)
+
+# Set operating mode
+kgft.set_config("exploit")       # "exploit" for shallow, "explore" for deep
+
+# Forward pass
+x = torch.randn(32, 64, 32, 32)  # (batch, channels, height, width)
+y = kgft(x)                      # Same shape as input
+
+# Get current strength value
+current_strength = kgft.strength
 
 ### ✨ KGFT vs. Conventional Attention
 | Property              | Conventional Attention (SENet, CBAM) | KGFT (Ours)                                 |
