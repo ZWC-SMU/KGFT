@@ -11,8 +11,12 @@ In any convolutional or linear layer, weights and features share the same channe
 - Geometric Guidance: $\mathbf{K}' = \mathbf{M} \cdot \mathbf{K}$, where $\mathbf{M}$ is derived from $\mathbf{G}$.
 - Adaptive Fusion: $\mathbf{Y} = \mathbf{X} + s \cdot \text{Proj}(\mathbf{X}_f \mathbf{K}')$ with learnable strength.
 
-## Two Modes: Exploit & Explore
-- Exploit — Applied to shallow layers. Preserve and reinforce dominant kernel directions.
-- Explore — Applied to deep layers. Suppress over-correlation and encourage semantic diversity.
+## 💡 Two Modes: Exploit & Explore
++---------+------------------+----------------------------------------------------------+
+| Mode    | Applied to       | Effect                                                   |
++---------+------------------+----------------------------------------------------------+
+| Exploit | Shallow layers   | Preserve and reinforce dominant kernel directions         |
+| Explore | Deep layers      | Suppress over-correlation and encourage semantic diversity |
++---------+------------------+----------------------------------------------------------+
 
 ## Performance Highlights
