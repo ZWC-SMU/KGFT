@@ -5,7 +5,7 @@ import torch.nn.functional as F
 M_EPSILON = 1e-3
 
 # ========================= KGLA core module =========================
-class KernelGuidedLinearAttention(nn.Module):
+class KernelGuidedFeatureTransform(nn.Module):
     def __init__(self, dim, prev_conv_weight, epsilon=None, init_strength=0.5):
         super().__init__()
         if epsilon is None:
@@ -201,7 +201,7 @@ class ResNet_KGLA(nn.Module):
                     conv_weight = block.conv2.weight
                     kgla_dim = planes
 
-                kgla = KernelGuidedLinearAttention(
+                kgla = KernelGuidedFeatureTransform(
                     dim=kgla_dim,
                     prev_conv_weight=conv_weight,
                     epsilon=M_EPSILON,
