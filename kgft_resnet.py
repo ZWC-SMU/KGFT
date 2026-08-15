@@ -142,7 +142,7 @@ class Bottleneck(nn.Module):
         return out
 
 # ========================= ResNet 主网络（接收 stage_schedule）=========================
-class ResNet_KGLA(nn.Module):
+class ResNet_KGFT(nn.Module):
     def __init__(self, num_classes=100, blocks_per_stage=[3,3,3],
                  base_channels=16, block_type='basic', kgla_enable=None,
                  stage_schedule=None):
@@ -253,3 +253,26 @@ class ResNet_KGLA(nn.Module):
             else:
                 strengths[i] = None
         return strengths
+
+
+if __name__ == '__main__':
+
+    stage_schedule = {0: {'mode': 'exploit', 'range': (0.1, 0.8), 'insert_positions': [2]},
+                      1: {'mode': 'exploit', 'range': (0.1, 0.7), 'insert_positions': [1, 3]},
+                      2: {'mode': 'exploit', 'range': (0.1, 0.6), 'insert_positions': [2, 5]},
+                      3: {'mode': 'explore', 'range': (0.1, 0.4), 'insert_positions': [2]}}
+
+    # Insert after any convolutional block
+    kgft = ResNet_KGFT(
+        num_classes=1000,
+        blocks_per_stage=[3, 4, 6, 3],
+        base_channels=64,
+        block_type='bottleneck',
+        kgla_enable=['kgla', 'kgla', 'kgla', 'kgla'],
+        stage_schedule=stage_schedule
+    )
+
+    # Forward pass
+    x = torch.randn(1, 3, 224, 224)  # (batch, channels, height, width)
+    y = kgft(x)  # Same shape as input
+    print(y.shape)
