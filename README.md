@@ -28,9 +28,17 @@ In any convolutional or linear layer, weights and features share the same channe
 ##### 📊 Performance Highlights
 | Model       | Dataset      | Baseline | + KGFT  | Gain   |
 |-------------|--------------|----------|---------|--------|
-| ResNet-50   | ImageNet-1K  | 75.43%   | 76.58%  | +1.15% |
 | ResNet-18   | CIFAR-100    | 74.60%   | 76.84%  | +2.24% |
 | ResNet-20   | CIFAR-100    | 67.61%   | 69.39%  | +1.78% |
 | ViT-Tiny    | CIFAR-100    | 54.33%   | 54.96%  | +0.63% |
+| ResNet-50   | ImageNet-1K  | 75.43%   | 76.58%  | +1.15% |
 | LLaMA-7B    | GSM8K        | 37.50%   | 38.32%  | +0.82% |
 | LLaMA-7B    | MAWPS        | 79.00%   | 82.46%  | +3.46% |
+
+## 🛠️ Installation
+bash
+pip install git+https://github.com/ZWC-SMU/KGFT.git
+
+## 🚀 Basic Usage in ResNet
+import torch
+from kgft import KGFT
