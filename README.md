@@ -17,3 +17,10 @@ In any convolutional or linear layer, weights and features share the same channe
 | Exploit | Shallow layers | Preserve and reinforce dominant kernel directions                      |
 | Explore | Deep layers    | Suppress over-correlation and encourage semantic diversity             |
 
+### ✨ KGFT vs. Conventional Attention
+| Property              | Conventional Attention (SENet, CBAM) | KGFT (Ours)                                 |
+|-----------------------|--------------------------------------|---------------------------------------------|
+| Mechanism             | Re-weighting channels (scalar)       | Reshaping channel geometry (full matrix)    |
+| Information Source    | Feature responses only               | Parameter + Feature manifolds               |
+| Layer Adaptation      | Same across all layers               | Exploit ↔ Explore depth-aware scheduling    |
+| Architecture Support  | Typically CNN-only                   | CNNs, ViTs, LLMs unified                    |
