@@ -95,3 +95,15 @@ y = ResNet_kgft(x)  # Same shape as input
 | ViT-Tiny        | Layer 12         | Explore  |
 | LLaMA-7B        | Layers 9, 21, 32 | Exploit  |
 
+## 📝 Citation
+f you find KGFT useful for your research, please cite our work:
+'''
+@article{feng2026kgft,
+  title={Dual-Manifold Geometry Guided Representation Learning: Adaptive Coupling Between Kernel and Data Spaces},
+  author={Feng, Qianjin and ...},
+  journal={arXiv preprint arXiv:2608.12345},
+  year={2026}
+}
+'''
+## 🙏 Acknowledgments
+This work was supported by the National Key R&D Program of China (2024YFA1012002, 2018YFC2001203) and the National Natural Science Foundation of China (62471214). Special thanks to the AI Computing Platform at the School of Biomedical Engineering, Southern Medical University.
