@@ -63,6 +63,11 @@ x = torch.randn(1, 3, 224, 224)  # (batch, channels, height, width)
 y = ResNet_kgft(x)  # Same shape as input
 ```
 
+## 🔥 Full Training Scripts
+- train_resnet.py — train with ResNet
+- train_ViT.py — train with ViT
+- finetune_llama.py — LLaMA-7B fine-tuning with LoRA
+
 ### ✨ KGFT vs. Conventional Attention
 | Property              | Conventional Attention (SENet, CBAM) | KGFT (Ours)                                 |
 |-----------------------|--------------------------------------|---------------------------------------------|
