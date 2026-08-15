@@ -68,7 +68,7 @@ y = ResNet_kgft(x)  # Same shape as input
 - train_ViT.py — train with ViT
 - finetune_llama.py — LLaMA-7B fine-tuning with LoRA
 
-### ✨ KGFT vs. Conventional Attention
+# ✨ KGFT vs. Conventional Attention
 | Property              | Conventional Attention (SENet, CBAM) | KGFT (Ours)                                 |
 |-----------------------|--------------------------------------|---------------------------------------------|
 | Mechanism             | Re-weighting channels (scalar)       | Reshaping channel geometry (full matrix)    |
@@ -76,7 +76,7 @@ y = ResNet_kgft(x)  # Same shape as input
 | Layer Adaptation      | Same across all layers               | Exploit ↔ Explore depth-aware scheduling    |
 | Architecture Support  | Typically CNN-only                   | CNNs, ViTs, LLMs unified                    |
 
-##### 📊 Performance Highlights
+## 📊 Performance Highlights
 | Model       | Dataset      | Baseline | + KGFT  | Gain   |
 |-------------|--------------|----------|---------|--------|
 | ResNet-18   | CIFAR-100    | 74.60%   | 76.84%  | +2.24% |
