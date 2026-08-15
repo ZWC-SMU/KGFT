@@ -85,3 +85,13 @@ y = ResNet_kgft(x)  # Same shape as input
 | ResNet-50   | ImageNet-1K  | 75.43%   | 76.58%  | +1.15% |
 | LLaMA-7B    | GSM8K        | 37.50%   | 38.32%  | +0.82% |
 | LLaMA-7B    | MAWPS        | 79.00%   | 82.46%  | +3.46% |
+
+## 📋 Recommended Scheduling
+| Architecture    | Layers           | Mode     |
+|-----------------|------------------|----------|
+| ResNet-18/34/50 | Stage 1-3        | Exploit  |
+| ResNet-18/34/50 | Stage 4          | Explore  |
+| ViT-Tiny        | Layers 4, 8      | Exploit  |
+| ViT-Tiny        | Layer 12         | Explore  |
+| LLaMA-7B        | Layers 9, 21, 32 | Exploit  |
+
