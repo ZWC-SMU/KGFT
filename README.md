@@ -7,4 +7,6 @@ KGFT (Kernel-Guided Feature Transform) is a lightweight, plug-and-play module th
 ## The Core Insights
 In any convolutional or linear layer, weights and features share the same channel space. Their covariance structures — the Gram matrix of weights and the covariance of features — are geometrically coupled. KGFT leverages this coupling to guide representation learning in a principled way:
 - Kernel Geometry: $\mathbf{G} = \mathbf{W}\mathbf{W}^\top$ captures filter correlations.
-- Data Geometry: $\mathbf{K} = \mathbf{X}_f^\top \mathbf{X}_f / \sqrt{N}$ captures feature covariances
+- Data Geometry: $\mathbf{K} = \mathbf{X}_f^\top \mathbf{X}_f / \sqrt{N}$ captures feature covariances.
+- Geometric Guidance: $\mathbf{K}' = \mathbf{M} \cdot \mathbf{K}$, where $\mathbf{M}$ is derived from $\mathbf{G}$/.
+- Adaptive Fusion: $\mathbf{Y} = \mathbf{X} + s \cdot \text{Proj}(\mathbf{X}_f \mathbf{K}')$ with learnable strength.
