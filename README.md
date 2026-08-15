@@ -22,16 +22,12 @@ bash
 pip install git+https://github.com/ZWC-SMU/KGFT.git
 
 ## 🚀 Basic Usage in ResNet
-## 🚀 Quick Start
-
-### Basic Usage
-
-```python
+```
 import torch
-from kgft import KernelGuidedFeatureTransform
+from kgft_resnet import KernelGuidedFeatureTransform
 
 # Get the weight of previous convolutional layer
-prev_conv = model.layer1[0].conv1  # Example: get a conv layer
+prev_conv = model.layer1[0].conv2  # Example: get a conv layer
 prev_weight = prev_conv.weight
 
 # Initialize KGFT module
@@ -42,15 +38,30 @@ kgft = KernelGuidedFeatureTransform(
     init_strength=0.5            # Initial strength (0~1)
 )
 
-# Set operating mode
-kgft.set_config("exploit")       # "exploit" for shallow, "explore" for deep
-
 # Forward pass
 x = torch.randn(32, 64, 32, 32)  # (batch, channels, height, width)
 y = kgft(x)                      # Same shape as input
 
-# Get current strength value
-current_strength = kgft.strength
+# Initialize Resnet_KGFT
+stage_schedule = {0: {'mode': 'exploit', 'range': (0.1, 0.8), 'insert_positions': [2]},
+                  1: {'mode': 'exploit', 'range': (0.1, 0.7), 'insert_positions': [1, 3]},
+                  2: {'mode': 'exploit', 'range': (0.1, 0.6), 'insert_positions': [2, 5]},
+                  3: {'mode': 'explore', 'range': (0.1, 0.4), 'insert_positions': [2]}}
+
+# Insert after any convolutional block
+ResNet_kgft = ResNet_KGFT(
+    num_classes=1000,
+    blocks_per_stage=[3, 4, 6, 3],
+    base_channels=64,
+    block_type='bottleneck',
+    kgla_enable=['kgla', 'kgla', 'kgla', 'kgla'],
+    stage_schedule=stage_schedule
+)
+
+# Forward pass
+x = torch.randn(1, 3, 224, 224)  # (batch, channels, height, width)
+y = ResNet_kgft(x)  # Same shape as input
+```
 
 ### ✨ KGFT vs. Conventional Attention
 | Property              | Conventional Attention (SENet, CBAM) | KGFT (Ours)                                 |
