@@ -17,6 +17,14 @@ In any convolutional or linear layer, weights and features share the same channe
 | Exploit | Shallow layers | Preserve and reinforce dominant kernel directions                      |
 | Explore | Deep layers    | Suppress over-correlation and encourage semantic diversity             |
 
+## 🛠️ Installation
+bash
+pip install git+https://github.com/ZWC-SMU/KGFT.git
+
+## 🚀 Basic Usage in ResNet
+import torch
+from kgft import KGFT
+
 ### ✨ KGFT vs. Conventional Attention
 | Property              | Conventional Attention (SENet, CBAM) | KGFT (Ours)                                 |
 |-----------------------|--------------------------------------|---------------------------------------------|
@@ -34,11 +42,3 @@ In any convolutional or linear layer, weights and features share the same channe
 | ResNet-50   | ImageNet-1K  | 75.43%   | 76.58%  | +1.15% |
 | LLaMA-7B    | GSM8K        | 37.50%   | 38.32%  | +0.82% |
 | LLaMA-7B    | MAWPS        | 79.00%   | 82.46%  | +3.46% |
-
-## 🛠️ Installation
-bash
-pip install git+https://github.com/ZWC-SMU/KGFT.git
-
-## 🚀 Basic Usage in ResNet
-import torch
-from kgft import KGFT
